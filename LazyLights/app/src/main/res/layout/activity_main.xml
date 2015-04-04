@@ -23,4 +23,13 @@
         android:layout_marginTop="20dp"
         android:text="@string/btn_random" android:paddingLeft="10dp" android:paddingRight="10dp"/>
 
+    <Button
+        android:id="@+id/buttonAllOff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_all_off" android:paddingLeft="10dp" android:paddingRight="10dp"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/buttonRand"
+        android:layout_alignStart="@+id/buttonRand" />
+
 </RelativeLayout>

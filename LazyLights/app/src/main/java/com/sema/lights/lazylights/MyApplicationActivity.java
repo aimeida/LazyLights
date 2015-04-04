@@ -1,5 +1,6 @@
 package com.sema.lights.lazylights;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -9,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewDebug;
 import android.widget.Button;
 
 import com.philips.lighting.hue.listener.PHLightListener;
@@ -29,7 +31,7 @@ import com.philips.lighting.model.PHLightState;
 public class MyApplicationActivity extends Activity {
     private PHHueSDK phHueSDK;
     private static final int MAX_HUE=65535;
-    public static final String TAG = "QuickStart";
+    public static final String TAG = "lazylights";
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,31 +42,44 @@ public class MyApplicationActivity extends Activity {
         Button randomButton;
         randomButton = (Button) findViewById(R.id.buttonRand);
         randomButton.setOnClickListener(new OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 randomLights();
             }
-
+        });
+        Button btn2;
+        btn2 = (Button) findViewById(R.id.buttonAllOff);
+        btn2.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                turnoffAllLights();
+            }
         });
 
     }
 
     public void randomLights() {
         PHBridge bridge = phHueSDK.getSelectedBridge();
+        Random rand = new Random();
 
         List<PHLight> allLights = bridge.getResourceCache().getAllLights();
-        Random rand = new Random();
-        
-        for (PHLight light : allLights) {
+
+        int[] stue = new int[]{0,2};
+        for (int i : stue) {
+            PHLight light = allLights.get(i);
             PHLightState lightState = new PHLightState();
+            lightState.setOn(true);
             lightState.setHue(rand.nextInt(MAX_HUE));
-            // To validate your lightstate is valid (before sending to the bridge) you can use:  
-            // String validState = lightState.validateState();
+            lightState.setBrightness(200);
+            lightState.setSaturation(200);
+            //String validState = lightState.validateState();
+            Log.w("Lights", light.toString());
             bridge.updateLightState(light, lightState, listener);
-            //  bridge.updateLightState(light, lightState);   // If no bridge response is required then use this simpler form.
+            //  bridge.updateLightState(light, lightState);   // If no bridge response is required
         }
     }
+
+
     // If you want to handle the response from the bridge, create a PHLightListener object.
     PHLightListener listener = new PHLightListener() {
         
@@ -89,7 +104,19 @@ public class MyApplicationActivity extends Activity {
         @Override
         public void onSearchComplete() {}
     };
-    
+
+    public void turnoffAllLights() {
+        PHBridge bridge = phHueSDK.getSelectedBridge();
+        List<PHLight> allLights = bridge.getResourceCache().getAllLights();
+
+        for (PHLight light : allLights) {
+            PHLightState lightState = new PHLightState();
+            lightState.setOn(false);
+            bridge.updateLightState(light, lightState, null);
+        }
+    }
+
+
     @Override
     protected void onDestroy() {
         PHBridge bridge = phHueSDK.getSelectedBridge();
