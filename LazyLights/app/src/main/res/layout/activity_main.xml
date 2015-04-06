@@ -8,28 +8,55 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".PHMyApplicationActivity" >
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/txt_click_random_button" />
-    
-    <Button
-        android:id="@+id/buttonRand"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:text="@string/btn_random" android:paddingLeft="10dp" android:paddingRight="10dp"/>
 
     <Button
-        android:id="@+id/buttonAllOff"
+            android:id="@+id/buttonRand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="20dp"
+            android:layout_centerHorizontal="true"
+            android:text="@string/btn_random" android:paddingLeft="10dp" android:paddingRight="10dp"/>
+
+    <Button
+            android:id="@+id/buttonAllOff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/buttonRand"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_centerHorizontal="true"
+            android:text="@string/btn_all_off" android:paddingLeft="10dp" android:paddingRight="10dp"/>
+
+    <Button
+        android:id="@+id/buttonMorgenmad"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/btn_all_off" android:paddingLeft="10dp" android:paddingRight="10dp"
-        android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/buttonRand"
-        android:layout_alignStart="@+id/buttonRand" />
+        android:layout_below="@+id/buttonAllOff"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_centerHorizontal="true"
+        android:text="@string/btn_morgenmad" android:paddingLeft="10dp" android:paddingRight="10dp"/>
+
+     <Button
+            android:id="@+id/button1min"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/buttonMorgenmad"
+            android:layout_marginTop="60dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="40dp"
+            android:text="@string/btn_1min" android:paddingLeft="10dp" android:paddingRight="10dp"/>
+
+    <Button
+        android:id="@+id/buttonCola"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/buttonMorgenmad"
+        android:layout_toRightOf="@+id/button1min"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:text="@string/btn_cola" android:paddingLeft="10dp" android:paddingRight="10dp"/>
 
 </RelativeLayout>
